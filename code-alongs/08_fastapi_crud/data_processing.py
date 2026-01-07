@@ -12,11 +12,14 @@ def read_json(filename):
     return data
 
 
+# data models
+
+
 class Book(BaseModel):
     id: int
     title: str
     author: str
-    year: int
+    year: int = Field(gt=1000, lt=2027, description="Year when book was published")
     description: str
 
 
@@ -25,4 +28,15 @@ class Library(BaseModel):
     books: list[Book]
 
 
-pprint(read_json("library.json"))
+# deserialize json data into pydantic models
+def library_data(filename):
+    json_data = read_json(filename)
+
+    # json data unpacks
+    # Library(name="Coolu library", books = [...])
+    return Library(**json_data)
+
+
+if __name__ == "__main__":
+    # pydantic model
+    pprint(library_data("library.json").books)
