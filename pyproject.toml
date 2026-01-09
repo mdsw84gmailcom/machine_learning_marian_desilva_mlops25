@@ -14,3 +14,8 @@ dependencies = [
     "pydantic>=2.12.5",
     "uvicorn>=0.40.0",
 ]
+
+[tool.uv.workspace]
+members = [
+    "code-alongs/09_streamlit_frontend",
+]
