@@ -18,4 +18,5 @@ dependencies = [
 [tool.uv.workspace]
 members = [
     "code-alongs/09_streamlit_frontend",
+    "excercises/3_pydantic",
 ]
