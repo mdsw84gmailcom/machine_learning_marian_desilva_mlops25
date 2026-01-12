@@ -16,7 +16,12 @@ class DataExplorer:
         return self._df
 
     def summary(self):
-        self._df = self._df_full.describe()
+        self._df = (
+            self._df_full.describe()
+            .T.drop(["count"], axis=1)
+            .drop(["Day", "Year"])
+            .reset_index()
+        )
         return self  # allows for method chaining
 
     def json_response(self):
