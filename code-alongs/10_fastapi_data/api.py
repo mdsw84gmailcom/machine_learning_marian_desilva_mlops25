@@ -13,5 +13,10 @@ async def read_sales(limit: int = Query(10, gt=0, lt=120_000)):
 @app.get("/summary")
 async def read_summary_data():
     data_explorer = DataExplorer()
-    # return summary = data_explorer.summary().json_response()
-    return {"summary": "good summary of data"}
+    return data_explorer.summary().json_response()
+
+
+@app.get("/kpis")
+async def read_kpis_by_country(country: str):
+    data_explorer = DataExplorer()
+    return data_explorer.kpis(country=country)
